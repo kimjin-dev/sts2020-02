@@ -2,7 +2,27 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
-	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-		
+	<bean id = "org.h2.tools.Server"
+	            class="org.h2.tools.Server"
+	            factory-method="createTcpServer"
+	            init-method="start"
+	            destroy-method="stop">
+	    <constructor-arg value="-tcp,-tcpAllowOthers,-tcpPort,8043" />
+	</bean>
+	<!-- 
+	 -->
+	<bean id="dataSource" class="org.h2.jdbcx.JdbcDataSource">
+		<property name="url" value="jdbc:h2:tcp://localhost/~/xe;AUTO_SERVER=TRUE"></property>
+		<property name="user" value="sa"></property>
+		<property name="password" value=""></property>
+	</bean>
+	
+	<bean id="jdbcConnectionPool" class="org.h2.jdbcx.JdbcConnectionPool">
+		<constructor-arg ref="dataSource"></constructor-arg>
+	</bean>
+	
+	<bean id="deptDao" class="com.bit.sts02.model.DeptDao1Impl">
+		<property name="jdbcConnectionPool" ref="jdbcConnectionPool"></property>
+	</bean>	
 </beans>

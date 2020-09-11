@@ -53,13 +53,14 @@
 	  		<tbody>
 	  		<c:forEach items="${list }" var="bean">
 	  			<tr>
-	  				<td><a href="#">${bean.deptno }</a></td>
-	  				<td><a href="#">${bean.dname }</a></td>
-	  				<td><a href="#">${bean.loc }</a></td>
+	  				<td><a href="detail?deptno=${bean.deptno }">${bean.deptno }</a></td>
+	  				<td><a href="detail?deptno=${bean.deptno }">${bean.dname }</a></td>
+	  				<td><a href="detail?deptno=${bean.deptno }">${bean.loc }</a></td>
 	  			</tr>
 	  		</c:forEach>
 	  		</tbody>
 	  	</table>
+	  	<p><a href="add" class="btn btn-primary" role="btn">입 력</a></p>
 	  </div>
 	</div>
 	<div class="row" id="footer">
