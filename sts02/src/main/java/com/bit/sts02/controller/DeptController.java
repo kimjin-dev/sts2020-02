@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.sts02.model.DeptDao;
 import com.bit.sts02.model.entity.DeptVo;
@@ -57,6 +58,19 @@ public class DeptController {
 		model.addAttribute("title2","EDIT");
 		model.addAttribute("readonly","");
 		return "deptOne";
+	}
+	
+	@RequestMapping(value = "edit", method = RequestMethod.POST)
+	public String update(@ModelAttribute DeptVo bean) throws SQLException {
+		deptDao.updateOne(bean);
+		return "redirect:detail?deptno="+bean.getDeptno();
+	}
+	
+	@RequestMapping(value = "delete", method=RequestMethod.POST)
+	public ModelAndView delete(@RequestParam("deptno")int deptno) throws SQLException {
+		deptDao.deleteOne(deptno);
+		
+		return null;
 	}
 }
 

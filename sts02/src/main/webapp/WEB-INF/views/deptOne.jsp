@@ -19,6 +19,20 @@
 				location.href='edit?deptno=${bean.deptno}';
 				return false;
 			});
+			$('form button').eq(1).click(function(){
+				$.post('delete', 'deptno=${bean.deptno}', function(data) {
+					if(data){
+						alert("ERROR");
+					}else{
+						location.replace("list");
+					}
+				});
+			});
+		}else{
+			$('form button').eq(1).text('취소')
+					.attr('type', 'reset')
+					.addClass('btn-default')
+					.removeClass('btn-danger');
 		}
 	});
 </script>
@@ -75,6 +89,7 @@
 		  <div class="form-group">
 		    <div class="col-sm-offset-2 col-sm-10">
 		      <button type="submit" class="btn btn-default">수 정</button>
+		      <button type="button" class="btn btn-danger">삭 제</button>
 		    </div>
 		  </div>
 		</form>
