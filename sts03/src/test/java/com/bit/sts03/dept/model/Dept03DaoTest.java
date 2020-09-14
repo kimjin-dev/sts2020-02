@@ -82,14 +82,14 @@ public class Dept03DaoTest {
 	}
 
 	@Test
-	public void testSelectAll() {
+	public void testSelectAll() throws SQLException {
 		//assertNotNull(dept03Dao.selectAll());
 		//assertSame(2, dept03Dao.selectAll().size());
 		System.out.println(dept03Dao.selectAll().get(0));
 	}
 
 	@Test
-	public void testSelectOne() {
+	public void testSelectOne() throws SQLException {
 		assertEquals(target , dept03Dao.selectOne(target.getDeptno()));
 	}
 	

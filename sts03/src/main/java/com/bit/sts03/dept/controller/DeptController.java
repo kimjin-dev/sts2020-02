@@ -23,13 +23,13 @@ public class DeptController {
 	Dept03Dao dept03Dao;
 
 	@RequestMapping("/")
-	public String list(Model model) {
+	public String list(Model model) throws SQLException {
 		model.addAttribute("list", dept03Dao.selectAll());
 		return "dept/list";
 	}
 	
 	@RequestMapping(value = "/{deptno}", method = RequestMethod.GET)
-	public String one(@PathVariable("deptno") int deptno,Model model) {
+	public String one(@PathVariable("deptno") int deptno,Model model) throws SQLException {
 		model.addAttribute("title", "Detail");
 		model.addAttribute("bean", dept03Dao.selectOne(deptno));
 		return "dept/form";
