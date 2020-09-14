@@ -1,0 +1,8 @@
+CREATE TABLE `dept03` (
+	`deptno` INT NOT NULL AUTO_INCREMENT,
+	`dname` VARCHAR(10) NULL DEFAULT NULL,
+	`loc` VARCHAR(10) NULL DEFAULT NULL,
+	PRIMARY KEY (`deptno`)
+)
+COLLATE='utf8_general_ci'
+;
