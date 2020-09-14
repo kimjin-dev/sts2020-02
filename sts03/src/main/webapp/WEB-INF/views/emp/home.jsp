@@ -47,7 +47,7 @@
 </nav>
   <div class="container">
   	<div class="row" id="header">
-	   <div class="col-md-12"></div>
+	   <div class="col-md-12">.col-md-12</div>
 	</div>
   	<div class="row" id="content">
 	    <div class="col-md-12">
