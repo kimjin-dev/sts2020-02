@@ -1,6 +1,8 @@
 package com.bit.sts03.dept.model;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -15,8 +17,13 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-public class Dept03DaoTest {
+import com.bit.sts03.dept.model.entity.Dept03Vo;
 
+public class Dept03DaoTest {
+	Dept03Vo target = new Dept03Vo(1, "test", "test");
+	Dept03Dao dept03Dao;
+	
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -38,8 +45,19 @@ public class Dept03DaoTest {
 		//fail("Not yet implemented");
 		ApplicationContext ac=null;
 		ac=new ClassPathXmlApplicationContext("/applicationContext.xml");
-		Dept03Dao dept03Dao=(Dept03Dao) ac.getBean("dept03Dao");
-		assertNotNull(dept03Dao.selectAll());
+		dept03Dao=(Dept03Dao) ac.getBean("dept03Dao");
+		//assertNotNull(dept03Dao.selectAll());
+//		assertSame(1, dept03Dao.selectAll().size());
+		System.out.println(dept03Dao.selectAll().get(0));
+	}
+
+	@Test
+	public void testSelectOne() {
+		
+		ApplicationContext ac=null;
+		ac=new ClassPathXmlApplicationContext("/applicationContext.xml");
+		dept03Dao=(Dept03Dao) ac.getBean("dept03Dao");
+		assertEquals(target , dept03Dao.selectOne(target.getDeptno()));
 	}
 
 	@Test
@@ -53,11 +71,14 @@ public class Dept03DaoTest {
 		
 		DataSource dataSource=(DataSource) ac.getBean("dataSource");
 		Connection conn=dataSource.getConnection();
-		conn.prepareStatement("CREATE TABLE `dept03` (" + 
+		/* create table */
+		conn.prepareStatement("CREATE TABLE IF NOT EXISTS `dept03` (" + 
 				"	`deptno` INT NOT NULL AUTO_INCREMENT," + 
 				"	`dname` VARCHAR(10) NULL DEFAULT NULL," + 
 				"	`loc` VARCHAR(10) NULL DEFAULT NULL," + 
 				"	PRIMARY KEY (`deptno`)" + 
 				")").execute();
+		/* insert dummy data */
+		conn.prepareStatement("insert into dept03 (dname,loc) values ('"+target.getDname()+"','"+target.getLoc()+"')").executeUpdate();
 	}
 }

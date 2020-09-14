@@ -7,5 +7,6 @@ import com.bit.sts03.dept.model.entity.Dept03Vo;
 public interface Dept03Dao {
 
 	List<Dept03Vo> selectAll();
-
+	Dept03Vo selectOne(int deptno);
+	
 }
