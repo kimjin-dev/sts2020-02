@@ -44,7 +44,14 @@
 </nav>
   <div class="container">
   	<div class="row" id="header">
-	   <div class="col-md-12"></div>
+	   <div class="col-md-12">
+	    	<div class="row" id="header">
+			   <div class="col-md-12">
+				   <div class="page-header">
+			 			 <h1>LIST PAGE <small>Dept Page</small></h1>
+					</div>
+	   </div>
+	   </div>
 	</div>
   	<div class="row" id="content">
 	    <div class="col-md-12">  	 <!-- content start -->
@@ -55,7 +62,7 @@
 			    <p class="list-group-item-text">loc</p>
 			  </span>
 		  	<c:forEach items="${list }" var="bean">
- 			 <a href="#" class="list-group-item">
+ 			 <a href="${pageContext.request.contextPath }/dept/${bean.deptno }" class="list-group-item">
   			 	<span class="badge">${bean.deptno }</span>
 			    <h4 class="list-group-item-heading">${bean.dname }</h4>
 			    <p class="list-group-item-text">${bean.loc }</p>
@@ -63,7 +70,9 @@
 		  	</c:forEach>
  			
 		</div>
-   	 </div>	   	 <!-- content end -->
+	   	 <p class="text-center"><a href="${pageContext.request.contextPath }/dept/add" class="btn btn-primary btn-lg btn-block" role="btn">입력</a></p>
+   	 </div>	   	 
+   	 <!-- content end -->
 	</div>
   	<div class="row" id="footer">
 	   <div class="col-md-12">
