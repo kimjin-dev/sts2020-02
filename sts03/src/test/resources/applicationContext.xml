@@ -9,7 +9,7 @@
 		<property name="url" value="jdbc:h2:mem:xe;DB_CLOSE_DELAY=-1;MODE=MySQL;TRACE_LEVEL_SYSTEM_OUT=2"></property>
 		;IFEXISTS=TRUE
 		 -->
-		 <property name="url" value="jdbc:h2:file:C:/data/xeTest;TRACE_LEVEL_SYSTEM_OUT=2"></property>
+		 <property name="url" value="jdbc:h2:file:C:/data/xeTest;TRACE_LEVEL_SYSTEM_OUT=0"></property>
 		<property name="username" value="xe"></property>
 		<property name="password" value="1234"></property>
 	</bean>
