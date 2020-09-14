@@ -13,9 +13,13 @@
 	src="${pageContext.request.contextPath }/resources/js/bootstrap.js"></script>
 	<script type="text/javascript">
 	$(function(){
-		if( '${title}' =='Detail'){
+		if('${title}' =='Detail'){
 			$(':text').prop('readonly',true);
-		}else if( '${title}' == 'Add'){
+			$('form').one('submit', function(){
+				$(':text').filter('input:gt(0)').prop('readonly',false);
+				return false;
+			});
+		}else if('${title}' == 'Add'){
 			$('form>.form-group').first().remove();
 			$(':submit').text('입 력');
 			$('form').removeAttr('action');

@@ -28,11 +28,17 @@ public class DeptController {
 		return "dept/list";
 	}
 	
-	@RequestMapping("/{deptno}")
+	@RequestMapping(value = "/{deptno}", method = RequestMethod.GET)
 	public String one(@PathVariable("deptno") int deptno,Model model) {
 		model.addAttribute("title", "Detail");
 		model.addAttribute("bean", dept03Dao.selectOne(deptno));
 		return "dept/form";
+	}
+	
+	@RequestMapping(value = "/{deptno}",method=RequestMethod.POST)
+	public String update(@PathVariable("deptno") int deptno, @ModelAttribute("bean") Dept03Vo bean) throws SQLException {
+		dept03Dao.updateOne(bean);
+		return "redirect:./"+deptno;
 	}
 	
 	@RequestMapping(value = "/add",method=RequestMethod.GET)
@@ -41,10 +47,11 @@ public class DeptController {
 		return "dept/form";
 	}
 	
-	@RequestMapping(value="/add",method=RequestMethod.POST)
+	@RequestMapping(value = "/add",method=RequestMethod.POST)
 	public String insert(@ModelAttribute("bean") Dept03Vo bean,HttpServletRequest req) throws SQLException, UnsupportedEncodingException {
 		req.setCharacterEncoding("utf-8");
 		dept03Dao.insertOne(bean);
 		return "redirect:./";
 	}
+	
 }

@@ -48,7 +48,7 @@
 	    	<div class="row" id="header">
 			   <div class="col-md-12">
 				   <div class="page-header">
-			 			 <h1>LIST PAGE <small>Dept Page</small></h1>
+			 			 <h1>LIST PAGE <small>DEPT Table</small></h1>
 					</div>
 	   </div>
 	   </div>
