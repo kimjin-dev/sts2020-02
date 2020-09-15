@@ -8,6 +8,10 @@
 	<%@ include file="template/header.jspf" %>
 	<style type="text/css">
 		.item>img{margin: 0px auto;}
+		.carousel-indicators>li{
+			background-color: gray;
+			border-color: black;
+		}
 	</style>
 	<script type="text/javascript">
 		$(function(){
