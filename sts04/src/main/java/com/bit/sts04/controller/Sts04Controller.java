@@ -11,13 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class Sts04Controller {
-	@Autowired
-	DataSource dataSource;
-	
 	
 	@RequestMapping("/")
 	public String index(Model model) throws SQLException {
-		System.out.println(dataSource.getConnection());
 		String[] arr= {
 			"big01.jpg",	
 			"big02.jpg",	
