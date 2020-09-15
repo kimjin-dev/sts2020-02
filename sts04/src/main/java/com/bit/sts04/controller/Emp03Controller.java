@@ -5,7 +5,10 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.bit.sts04.model.EmpDao;
@@ -18,12 +21,22 @@ public class Emp03Controller {
 	EmpDao empDao;
 	
 	@RequestMapping("/")
-	public ModelAndView list() throws SQLException {
-		List<EmpVo> list=empDao.selectAll();
-		for(EmpVo bean: list) {
-			System.out.println(bean);
+	public String list(Model model) throws SQLException {
+		model.addAttribute("list", empDao.selectAll());
+		return "emp/list";
+	}
+	
+	@RequestMapping(value = "/add", method=RequestMethod.GET)
+	public void add() {
+	}
+	@RequestMapping(value = "/add", method=RequestMethod.POST)
+	public String add(@ModelAttribute EmpVo bean) {
+		try {
+			empDao.insertOne(bean);
+		} catch (SQLException e) {
+			return "emp/add";
 		}
-		return null;
+		return "redirect:./";
 	}
 	
 }
