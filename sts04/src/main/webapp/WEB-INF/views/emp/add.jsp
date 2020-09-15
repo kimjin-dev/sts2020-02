@@ -11,26 +11,27 @@
 <body>
 <%@ include file="../template/menu.jspf" %>
 <div class="page-header">
-  <h1>ADD PAGE<small>EMP TABLE</small></h1>
+  <h1>${title eq null?'ADD':title } PAGE<small>EMP TABLE</small></h1>
 </div>
 
 <form class="form-horizontal" method="post">
+	<input type="hidden" name="sabun" value="${bean.sabun eq null?0:bean.sabun }">
   <div class="form-group">
     <label for="name" class="col-sm-2 control-label">name</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="name" id="name" placeholder="name">
+      <input type="text" class="form-control" name="name" id="name" placeholder="name" value="${bean.name }">
     </div>
   </div>
   <div class="form-group">
     <label for="pay" class="col-sm-2 control-label">pay</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="pay" id="pay" placeholder="pay">
+      <input type="text" class="form-control" name="pay" id="pay" placeholder="pay" value="${bean.pay }"> 
     </div>
   </div>
   <div class="form-group">
     <label for="deptno" class="col-sm-2 control-label">deptno</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="deptno" id="deptno" placeholder="deptno">
+      <input type="text" class="form-control" name="deptno" id="deptno" placeholder="deptno" value="${bean.deptno }">
     </div>
   </div>
 

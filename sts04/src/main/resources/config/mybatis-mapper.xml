@@ -6,4 +6,10 @@
 	  <select id="selectAll" resultType="com.bit.sts04.model.entity.EmpVo">
 	    select * from emp03 order by sabun desc
 	  </select>
+	  <insert id="insertOne" parameterType="com.bit.sts04.model.entity.EmpVo">
+	  	insert into emp03 (name,nalja,pay,deptno) values(#{name},now(),#{pay},#{deptno})
+	  </insert>
+	  <select id="selectOne" parameterType="int" resultType="com.bit.sts04.model.entity.EmpVo">
+	  	select * from emp03 where sabun=#{value}
+	  </select>
 </mapper>

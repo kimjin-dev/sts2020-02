@@ -17,12 +17,12 @@ public class EmpDaoMybatisImpl extends SqlSessionDaoSupport implements EmpDao {
 
 	@Override
 	public EmpVo selectOne(int key) throws SQLException {
-		return null;
+		return getSqlSession().selectOne("bit.selectOne", key);
 	}
 
 	@Override
 	public void insertOne(EmpVo bean) throws SQLException {
-
+		getSqlSession().insert("bit.insertOne", bean);
 	}
 
 	@Override
