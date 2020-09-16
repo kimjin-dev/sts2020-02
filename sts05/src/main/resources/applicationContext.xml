@@ -11,8 +11,8 @@
 
 	<beans:bean id="dataSource" 
 		class="org.springframework.jdbc.datasource.SimpleDriverDataSource" 
-		p:driverClass="org.mariadb.jdbc.Driver" 
-		p:url="jdbc:mysql://localhost:3307/xe"
+		p:driverClass="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" 
+		p:url="jdbc:log4jdbc:mysql://localhost:3307/xe"
 		p:username="scott"
 		p:password="tiger"
 	/>

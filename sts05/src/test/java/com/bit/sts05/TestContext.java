@@ -5,6 +5,7 @@ import static org.junit.Assert.assertSame;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -50,25 +51,21 @@ public class TestContext {
 			try(
 					SqlSession session =sqlSessionFactory.openSession()
 						){
-					log.debug(session.getConnection().toString());
 					Map<String, Object> map=new HashMap<String, Object>();
 					map.put("dname", "tester");
 					map.put("loc", "ÇÐ¿ø");
 					map.put("deptno",1234);
-					session.insert("dept.insertTest",map);
-					log.debug(session.getConnection().toString());
-					Map<String, Object> target =session.selectOne("dept.selectDept",1234);
+					session.insert("test.insertTest",map);
+					
+					Map<String, Object> target =session.selectOne("test.selectDept",1234);
 					Set<Entry<String,Object>> entrySet=target.entrySet();
 					Iterator<Entry<String, Object>> ite= entrySet.iterator();
 					while(ite.hasNext()) {
 						Entry<String, Object> entry = ite.next();
-						log.debug(entry.getKey()+":"+entry.getValue());
 					}
-					log.debug(session.getConnection().toString());
-					assertSame(1, session.delete("dept.deleteTest",1234));
-					log.debug(session.getConnection().toString());
+					
+					assertSame(1, session.delete("test.deleteTest",1234));
 				}
 		}
-		
 		
 }
