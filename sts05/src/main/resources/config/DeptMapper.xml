@@ -28,4 +28,14 @@
 			#{su}
 		</foreach>
 		</select>
+		
+		<select id="selectAll" resultType="deptBean" parameterType="_int">
+			select * from dept where deptno between
+			<if test="val eq null">
+			1 and 1+3;
+			</if> 
+			<if test="val neq null">
+			#{val} and #{val}+2
+			</if> 
+		</select>
    </mapper>

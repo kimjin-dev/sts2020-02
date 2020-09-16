@@ -21,7 +21,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.bit.sts05" />
+	<context:component-scan base-package="com.bit.sts05">
+		<context:exclude-filter type="annotation" expression="com.bit.sts05.dept.model"/>
+	</context:component-scan> 
+
+
 	
 	
 	
