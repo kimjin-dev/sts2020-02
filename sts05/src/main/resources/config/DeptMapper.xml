@@ -10,16 +10,22 @@
 -->
 		<select id="selectDept" resultType="deptBean" parameterType="deptBean">
 			select * from dept03 
-			<if test="deptno ==null and dname==null">
+			<if test="deptno eq null and dname eq null">
 				order by deptno desc
 			</if>
-			<trim prefix="where" prefixOverrides="and">
-				<if test="deptno !=null and deptno!=0">
-					and deptno=#{deptno}
+			<trim prefix="where" suffixOverrides="and" suffix="order by deptno desc">
+				<if test="deptno neq null and deptno neq 0">
+					deptno=#{deptno} and
 				</if>
-				<if test="dname !=null">
-					and dname=#{dname}
+				<if test="dname neq null">
+					dname=#{dname} and
 				</if>	
 			</trim>
+		</select>
+		<select id="selectEach" resultType="deptBean">
+		select * from dept where deptno in 
+		<foreach item="su" index="idx" collection="list" separator="," open="(" close=")">
+			#{su}
+		</foreach>
 		</select>
    </mapper>
