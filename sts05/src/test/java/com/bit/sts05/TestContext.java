@@ -45,49 +45,30 @@ public class TestContext {
 			assertNotNull(sqlSessionFactory);
 		}
 
-		/*
-		 * @Test public void testSelectDept() { try( SqlSession session
-		 * =sqlSessionFactory.openSession() ){ List<Map<String, String>>
-		 * list=session.selectList("dept.selectDept"); assertNotNull(list);
-		 * for(Map<String,String>map:list) { log.debug(map.toString()); } }
-		 * 
-		 * }
-		 */
 		@Test
 		public void testSelectDept() {
 			try(
 					SqlSession session =sqlSessionFactory.openSession()
 						){
-					Map<String, Object> map =session.selectOne("dept.selectDept",1234);
-					Set<Entry<String,Object>> entrySet=map.entrySet();
+					log.debug(session.getConnection().toString());
+					Map<String, Object> map=new HashMap<String, Object>();
+					map.put("dname", "tester");
+					map.put("loc", "학원");
+					map.put("deptno",1234);
+					session.insert("dept.insertTest",map);
+					log.debug(session.getConnection().toString());
+					Map<String, Object> target =session.selectOne("dept.selectDept",1234);
+					Set<Entry<String,Object>> entrySet=target.entrySet();
 					Iterator<Entry<String, Object>> ite= entrySet.iterator();
 					while(ite.hasNext()) {
 						Entry<String, Object> entry = ite.next();
 						log.debug(entry.getKey()+":"+entry.getValue());
 					}
+					log.debug(session.getConnection().toString());
+					assertSame(1, session.delete("dept.deleteTest",1234));
+					log.debug(session.getConnection().toString());
 				}
 		}
 		
-		@Test
-		public void testInsertTest() {
-			try(
-					SqlSession session = sqlSessionFactory.openSession();	
-					){
-				Map<String, Object> map=new HashMap<String, Object>();
-				map.put("dname", "tester");
-				map.put("loc", "학원");
-				map.put("deptno",1234);
-				session.insert("insertTest",map);
-			}
-		}
 		
-		@Test
-		public void testDeleteTest() {
-			try(
-					SqlSession session = sqlSessionFactory.openSession();
-					){
-				assertSame(1, session.delete("deleteTest",1234));
-				
-			}
-		}
 }
