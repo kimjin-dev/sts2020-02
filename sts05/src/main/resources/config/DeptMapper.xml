@@ -3,20 +3,23 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
    <mapper namespace="dept">
+<!-- 			
+			select * from dept03 order by deptno desc
+			select * from dept03 where dname=#{dname}
+			select * from dept03 where deptno=#{deptno} and dname=#{dname} 
+-->
 		<select id="selectDept" resultType="deptBean" parameterType="deptBean">
 			select * from dept03 
-			<if test="deptno ==null">
+			<if test="deptno ==null and dname==null">
 				order by deptno desc
 			</if>
-			<where>
-				<if test="deptno !=null">
-					deptno=#{deptno}
+			<trim prefix="where" prefixOverrides="and">
+				<if test="deptno !=null and deptno!=0">
+					and deptno=#{deptno}
 				</if>
-				<if test="deptno !=0">
-					<if test="dname !=null">
-						and dname=#{dname}
-					</if>	
-				</if>
-			</where>
+				<if test="dname !=null">
+					and dname=#{dname}
+				</if>	
+			</trim>
 		</select>
    </mapper>

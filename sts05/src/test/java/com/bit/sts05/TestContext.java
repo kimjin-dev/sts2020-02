@@ -73,7 +73,7 @@ public class TestContext {
 					SqlSession session=sqlSessionFactory.openSession();
 					
 					){
-				session.selectList("dept.selectDept",new DeptVo(5,null,null));
+				session.selectList("dept.selectDept",new DeptVo(5,null,"test22"));
 				
 			}
 		}
