@@ -5,10 +5,8 @@ import static org.junit.Assert.assertSame;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -22,6 +20,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import com.bit.sts05.dept.model.entity.DeptVo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/applicationContext.xml")
@@ -47,25 +47,35 @@ public class TestContext {
 		}
 
 		@Test
-		public void testSelectDept() {
-			try(
-					SqlSession session =sqlSessionFactory.openSession()
-						){
-					Map<String, Object> map=new HashMap<String, Object>();
-					map.put("dname", "tester");
-					map.put("loc", "«–ø¯");
-					map.put("deptno",1234);
-					session.insert("test.insertTest",map);
-					
-					Map<String, Object> target =session.selectOne("test.selectDept",1234);
-					Set<Entry<String,Object>> entrySet=target.entrySet();
-					Iterator<Entry<String, Object>> ite= entrySet.iterator();
-					while(ite.hasNext()) {
-						Entry<String, Object> entry = ite.next();
-					}
-					
+		public void testSelectTest() {
+			try (SqlSession session = sqlSessionFactory.openSession()) {
+					Map<String, Object> target=new HashMap<String, Object>();
+					target.put("dname", "tester");
+					target.put("loc","ÌïôÏõê");
+					target.put("deptno",1234);
+					session.insert("test.insertTest",target);
+
+					Map<String, Object> map = session.selectOne("test.selectDept",1234);
+//					Set<Entry<String, Object>> entrySet = map.entrySet();
+//					Iterator<Entry<String, Object>> ite = entrySet.iterator();
+//					while(ite.hasNext()) {
+//						Entry<String, Object> entry = ite.next();
+//						log.debug(entry.getKey()+":"+entry.getValue());
+//					}
+
 					assertSame(1, session.delete("test.deleteTest",1234));
 				}
+		}
+		
+		@Test
+		public void testSelectDept() {
+			try(   
+					SqlSession session=sqlSessionFactory.openSession();
+					
+					){
+				session.selectList("dept.selectDept",new DeptVo(5,null,null));
+				
+			}
 		}
 		
 }

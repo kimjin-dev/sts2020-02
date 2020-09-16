@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+   <mapper namespace="dept">
+		<select id="selectDept" resultType="deptBean" parameterType="deptBean">
+			select * from dept03 
+			<if test="deptno ==null">
+				order by deptno desc
+			</if>
+			<where>
+				<if test="deptno !=null">
+					deptno=#{deptno}
+				</if>
+				<if test="deptno !=0">
+					<if test="dname !=null">
+						and dname=#{dname}
+					</if>	
+				</if>
+			</where>
+		</select>
+   </mapper>
