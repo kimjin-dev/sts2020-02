@@ -9,4 +9,6 @@ public interface EmpDao {
 	List<EmpVo> selectAll() throws SQLException;
 	List<EmpVo> selectAll(int page) throws SQLException;
 	EmpVo selectOne(int sabun) throws SQLException;
+	void insertOne(EmpVo bean);
+	
 }
