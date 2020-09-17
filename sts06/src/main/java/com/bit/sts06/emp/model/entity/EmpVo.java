@@ -4,12 +4,13 @@ import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-//@ToString
-//@EqualsAndHashCode
 @AllArgsConstructor
-//@NoArgsConstructor
+//@ToString
+//@EqualsAndHashCod
 @Data
+@NoArgsConstructor
 public class EmpVo {
 //	@Getter
 //	@Setter
@@ -25,4 +26,6 @@ public class EmpVo {
 //	@Getter
 //	@Setter
 	private int pay, deptno;
+	
+	
 }

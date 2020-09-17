@@ -7,26 +7,24 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<context:property-placeholder location="classpath:/jdbc.properties"/>
-	<!-- Root Context: defines shared resources visible to all other web components -->
-<!-- 	
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource"
-		p:driverClass="${jdbc.driver }" 
-		p:url="${jdbc.url }"
-		p:username="${jdbc.user }"
-		p:password="${jdbc.password }"	
-	/>
-	 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-		<property name="driverClass" value="${jdbc.driver}"></property>
-		<property name="url" value="${jdbc.url}"></property>
-		<property name="username" value="${jdbc.user}"></property>
-		<property name="password" value="${jdbc.password}"></property>
-	</bean>
 	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource"
+		p:driverClass="${jdbc.driver}"
+		p:url="${jdbc.url}"
+		p:username="${jdbc.user}"
+		p:password="${jdbc.password}"
+	/>
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
 		p:dataSource-ref="dataSource"
 		p:configLocation="classpath:/mybatis-config.xml"
 	/>
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory"/>
+	</bean>
 	
-	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.bit.sts06.emp.model"/>
 </beans>
+
+
+
+
