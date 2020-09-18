@@ -2,9 +2,8 @@ package com.bit.sts07.model.entity;
 
 public class DeptVo {
 	private int deptno;
-	private String dname, loc;
+	private String dname,loc;
 	public DeptVo() {
-		// TODO Auto-generated constructor stub
 	}
 	public DeptVo(int deptno, String dname, String loc) {
 		super();
@@ -66,6 +65,5 @@ public class DeptVo {
 	public String toString() {
 		return "DeptVo [deptno=" + deptno + ", dname=" + dname + ", loc=" + loc + "]";
 	}
-	
 	
 }

@@ -2,7 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.bi</groupId>
+	<groupId>com.bit</groupId>
 	<artifactId>sts07</artifactId>
 	<name>sts07</name>
 	<packaging>war</packaging>
@@ -34,6 +34,11 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-aop</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
@@ -52,21 +57,25 @@
 			<artifactId>spring-tx</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 				
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
-		</dependency>
+		</dependency>	
 		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
 		<dependency>
 		    <groupId>org.aspectj</groupId>
 		    <artifactId>aspectjweaver</artifactId>
 		    <version>${org.aspectj-version}</version>
-		    <scope>runtime</scope>
 		</dependency>
-					
+		
 		
 		<!-- Logging -->
 		<dependency>
@@ -119,11 +128,11 @@
 		</dependency>
 				
 		<!-- Servlet -->
-<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
+		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>javax.servlet-api</artifactId>
-		    <version>3.1.0</version>
+		    <version>3.0.1</version>
 		    <scope>provided</scope>
 		</dependency>
 
@@ -145,9 +154,9 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
-		</dependency>
+		</dependency>    
 		
-		<!-- user add libs -->   
+		<!-- user add libs -->
 		<!-- https://mvnrepository.com/artifact/org.mariadb.jdbc/mariadb-java-client -->
 		<dependency>
 		    <groupId>org.mariadb.jdbc</groupId>
@@ -179,8 +188,9 @@
 		    <artifactId>log4jdbc</artifactId>
 		    <version>1.2</version>
 		</dependency>
-										     
-		  
+		
+		
+		    
 	</dependencies>
     <build>
         <plugins>

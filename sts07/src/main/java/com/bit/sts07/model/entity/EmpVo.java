@@ -4,12 +4,11 @@ import java.sql.Timestamp;
 
 public class EmpVo {
 	private int sabun;
-	private String name;
+	private String name,dname;
 	private Timestamp nalja;
 	private int pay, deptno;
 	
 	public EmpVo() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public EmpVo(int sabun, String name, Timestamp nalja, int pay, int deptno) {
@@ -19,6 +18,14 @@ public class EmpVo {
 		this.nalja = nalja;
 		this.pay = pay;
 		this.deptno = deptno;
+	}
+
+	public String getDname() {
+		return dname;
+	}
+
+	public void setDname(String dname) {
+		this.dname = dname;
 	}
 
 	public int getSabun() {
@@ -60,7 +67,7 @@ public class EmpVo {
 	public void setDeptno(int deptno) {
 		this.deptno = deptno;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -100,7 +107,5 @@ public class EmpVo {
 		return "EmpVo [sabun=" + sabun + ", name=" + name + ", nalja=" + nalja + ", pay=" + pay + ", deptno=" + deptno
 				+ "]";
 	}
-	
-	
 	
 }
