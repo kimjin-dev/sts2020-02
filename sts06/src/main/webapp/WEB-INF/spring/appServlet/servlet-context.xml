@@ -3,9 +3,11 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -23,6 +25,53 @@
 	
 	<context:component-scan base-package="com.bit.sts06" />
 	
-	
-	
+	<interceptors>
+		<interceptor>
+			<mapping path="/emp/**"/>
+			<beans:bean class="com.bit.sts06.util.LogInterceptor"/>
+		</interceptor>
+	</interceptors>
+	<beans:bean id="beforeAdvice" class="com.bit.sts06.util.BeforeAop"></beans:bean>
+	<beans:bean id="afterReturnAdvice" class="com.bit.sts06.util.AfterReturnAop"></beans:bean>
+	<beans:bean id="aroundAdvice" class="com.bit.sts06.util.AroundAop"></beans:bean>
+	<aop:aspectj-autoproxy/>
+	<aop:config>
+		<!-- 
+		<aop:aspect ref="beforeAdvice">
+			<aop:pointcut expression="execution(* com.bit.sts06.emp.model.*.*(..))" id="beforeCut"/>
+			<aop:before method="before" pointcut-ref="beforeCut"/>
+		</aop:aspect>
+		<aop:aspect ref="afterReturnAdvice">
+			<aop:pointcut expression="execution(* com.bit.sts06.emp.model.*.*(..))" id="afterR"/>
+			<aop:after method="afterReturn" pointcut-ref="afterR"/>
+		</aop:aspect>
+		 -->
+		 <aop:aspect ref="aroundAdvice">
+		 	<aop:pointcut expression="execution(* com.bit.sts06.emp.model.*.*(..))" id="aroundCut"/>
+		 	<aop:around method="around" pointcut-ref="aroundCut"/>
+		 </aop:aspect>
+	</aop:config>
+	<!-- 
+	ASPECTJ EXPRESSION EX)
+	execution(public * *(..))	public 메소드 실행
+	execution(* set*(..))	이름이 set으로 시작하는 모든 메소드명 실행
+	execution(* set*(..))	이름이 set으로 시작하는 모든 메소드명 실행
+	execution(* com.xyz.service.AccountService.*(..))	AccountService 인터페이스의 모든 메소드 실행
+	execution(* com.xyz.service.*.*(..))	service 패키지의 모든 메소드 실행
+	execution(* com.xyz.service..*.*(..))	service 패키지와 하위 패키지의 모든 메소드 실행
+	 -->
 </beans:beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

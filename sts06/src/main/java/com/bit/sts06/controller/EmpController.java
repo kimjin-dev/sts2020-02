@@ -1,5 +1,6 @@
 package com.bit.sts06.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +21,14 @@ public class EmpController {
 	@Autowired
 	EmpService empService;
 
-	@RequestMapping("/")
-	public String list(HttpServletRequest req) throws SQLException {
-		empService.list(req);
+	@RequestMapping(value = "/",params = "page")
+	public String list(HttpServletRequest req,Model model, int page) throws SQLException {
+		empService.list(model,page);
+		return "emp/list";
+	}
+	@RequestMapping(value = "/")
+	public String list(HttpServletRequest req,Model model) throws SQLException {
+		empService.list(model);
 		return "emp/list";
 	}
 	
@@ -32,8 +38,21 @@ public class EmpController {
 		return "emp/form";
 	}
 	@RequestMapping(value = "/add",method=RequestMethod.POST)
-	public String add(@ModelAttribute EmpVo bean) throws SQLException {
+	public String add(@ModelAttribute EmpVo bean,HttpServletRequest req) throws SQLException, UnsupportedEncodingException {
+		
 		empService.insert(bean);
 		return "redirect:./";
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+

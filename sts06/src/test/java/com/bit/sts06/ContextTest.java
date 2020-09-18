@@ -18,6 +18,7 @@ public class ContextTest {
 	@Autowired
 	SqlSession sqlSession;
 	
+	
 	@Test
 	public void testGetBean() {
 		assertNotNull(sqlSession);
