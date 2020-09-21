@@ -18,7 +18,7 @@ public interface DeptDao {
 	List<DeptVo> selectAll() throws SQLException;
 	
 	@Select("select * from dept03 where deptno=#{val}")
-	DeptVo SelectOne(@Param("val")int deptno) throws SQLException;
+	DeptVo selectOne(@Param("val")int deptno) throws SQLException;
 	
 	@Insert("insert into dept03 (dname, loc) values (#{dname}, #{loc})")
 	//param 생략 가능

@@ -37,7 +37,7 @@ public class DeptDaoTest {
 
 	@Test
 	public void testSelectOne() throws SQLException {
-		assertNotNull(sqlSession.getMapper(DeptDao.class).SelectOne(1));
+		assertNotNull(sqlSession.getMapper(DeptDao.class).selectOne(1));
 	}
 
 	@Test
@@ -54,7 +54,7 @@ public class DeptDaoTest {
 		target.setDname("테스트");
 		target.setLoc("테스트지역");
 		sqlSession.getMapper(DeptDao.class).updateOne(target);
-		assertEquals(target, sqlSession.getMapper(DeptDao.class).SelectOne(target.getDeptno()));
+		assertEquals(target, sqlSession.getMapper(DeptDao.class).selectOne(target.getDeptno()));
 		
 		sqlSession.getMapper(DeptDao.class).deleteOne(target.getDeptno());
 		assertSame(10, sqlSession.getMapper(DeptDao.class).selectAll().size());
