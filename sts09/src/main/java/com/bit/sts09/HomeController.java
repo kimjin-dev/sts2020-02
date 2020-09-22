@@ -56,23 +56,24 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/download/{name:.+}")// 확장자 포함 pathvariable
-	public void download(@PathVariable String name, HttpServletResponse res) {
+	public void download(@PathVariable String name,HttpServletResponse res) {
 		logger.info(name);
+		String origin=name.substring(name.indexOf('_')+1);
 		File file=new File(path+name);
 		if(file.exists()) {
 			OutputStream os=null;
 			InputStream is=null;
 			res.setContentType("application/octet-stream");
+			res.setHeader("Content-Disposition", "attachment; filename=\""+origin+"\"");
 			try {
 				os=res.getOutputStream();
 				is=new FileInputStream(file);
 				int su=-1;
-				while((su=is.read())!=-1) {
+				while((su=is.read())!=-1)
 					os.write(su);
-				}
 			} catch (IOException e) {
 				e.printStackTrace();
-			}finally {
+			} finally {
 				try {
 					if(os!=null)os.close();
 					if(is!=null)is.close();
@@ -82,4 +83,5 @@ public class HomeController {
 			}
 		}
 	}
+	
 }
