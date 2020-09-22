@@ -9,13 +9,16 @@ public class EchoWebSocket extends TextWebSocketHandler{
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println("afterConnectionEstablished");
+		System.out.println("connection..."+session.getId());
 		super.afterConnectionEstablished(session);
 	}
 	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		System.out.println("handleTextMessage");
+		String msg=message.getPayload();
+		System.out.println(msg);
+		TextMessage text=new TextMessage("나>"+msg);
+		session.sendMessage(text);
 	}
 	
 	@Override

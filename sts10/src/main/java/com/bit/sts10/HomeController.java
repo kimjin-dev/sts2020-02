@@ -37,7 +37,7 @@ public class HomeController {
 	
 	@RequestMapping("/page4")
 	public void page4(HttpSession session) {
-		
+		System.out.println("controller...."+session.getId());
 	}
 
 	@RequestMapping("/login")
