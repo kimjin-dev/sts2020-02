@@ -9,11 +9,11 @@
 <body>
 	<h2>login page</h2>
 	<nav>
-		<a href="./">page1</a>
-		<a href="./page2">page2</a>
-		<a href="./page3">page3</a>
-		<a href="./page4">page4</a>
-		<a href="./login">login</a>
+		<a href="/sts10/">page1</a>
+		<a href="/sts10/page2">page2</a>
+		<a href="/sts10/page3">page3</a>
+		<a href="/sts10/page4">page4</a>
+		<a href="/sts10/login">login</a>
 	</nav>
 	<div>
 		<form action="result" method="post">

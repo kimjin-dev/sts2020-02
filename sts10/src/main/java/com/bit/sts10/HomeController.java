@@ -27,20 +27,12 @@ public class HomeController {
 	
 	@RequestMapping("/emp/page2")
 	public String page2(HttpSession session) {
-		if("admin".equals(session.getAttribute("auth")))
-			return "page2";
-		else if("member".equals(session.getAttribute("auth")))
-			return "page2";
-		else
-			return "redirect:/";
+		return "page2";
 	}
 	
 	@RequestMapping("/dept/page3")
 	public String page3(HttpSession session) {
-		if("admin".equals(session.getAttribute("auth")))
-			return "page3";
-		else
-			return "redirect:/";
+		return "page3";
 	}
 	
 	@RequestMapping("/page4")
