@@ -25,18 +25,26 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/page2")
-	public void page2() {
-		
+	@RequestMapping("/emp/page2")
+	public String page2(HttpSession session) {
+		if("admin".equals(session.getAttribute("auth")))
+			return "page2";
+		else if("member".equals(session.getAttribute("auth")))
+			return "page2";
+		else
+			return "redirect:/";
 	}
 	
-	@RequestMapping("/page3")
-	public void page3() {
-		
+	@RequestMapping("/dept/page3")
+	public String page3(HttpSession session) {
+		if("admin".equals(session.getAttribute("auth")))
+			return "page3";
+		else
+			return "redirect:/";
 	}
 	
 	@RequestMapping("/page4")
-	public void page4() {
+	public void page4(HttpSession session) {
 		
 	}
 
@@ -50,11 +58,17 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/result")
-	public String result(String id, String pw, HttpServletRequest req, HttpSession session) {
+	public String result(String id, String pw, HttpSession session) {
 		logger.info("id:"+id+":pw"+pw);
-		//HttpSession session = req.getSession();
 		session.setAttribute("login", true);
 		session.setAttribute("who", id);
+		if(id.equals("admin")) {
+			session.setAttribute("auth", "admin");
+		}else if(id.equals("user01")) {
+			session.setAttribute("auth", "member");
+		}else {
+			session.setAttribute("auth", "anonymous");
+		}
 		return "redirect:/";
 	}
 	

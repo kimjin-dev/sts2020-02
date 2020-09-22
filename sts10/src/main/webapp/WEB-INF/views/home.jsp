@@ -6,12 +6,12 @@
 	<title>Home</title>
 </head>
 <body>
-	<h2>page1 page</h2>
+	<h2>INDEX page</h2>
 	<nav>
-		<a href="./">page1</a>
-		<a href="./page2">page2</a>
-		<a href="./page3">page3</a>
-		<a href="./page4">page4</a>
+		<a href="/sts10/">page1</a>
+		<a href="/sts10/emp/page2">page2</a>
+		<a href="/sts10/dept/page3">page3</a>
+		<a href="/sts10/page4">page4</a>
 		<c:if test="${sessionScope.login }">
 			${sessionScope.who }님 로그인 중<a href="./logout">[logout]</a>
 		</c:if>		
