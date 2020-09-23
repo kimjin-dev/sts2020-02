@@ -25,7 +25,7 @@
      	$(function(){
      		$('button').click(function(){
      			if($('input').val()){
-     				sock.send('['+'${sessionScope.id}'+']'+$('input').val());
+     				sock.send($('input').val());
      				$('input').val('');
      			}
      		});
