@@ -20,4 +20,14 @@ public class DeptServiceImpl implements DeptService {
 	public List<DeptVo> list() throws SQLException{
 		return sqlSession.getMapper(DeptDao.class).selectAll();
 	}
+
+	@Override
+	public DeptVo detail(int key) throws SQLException {
+		return sqlSession.getMapper(DeptDao.class).selectOne(key);
+	}
+
+	@Override
+	public void insert(DeptVo bean) throws SQLException {
+		sqlSession.getMapper(DeptDao.class).insertOne(bean);
+	}
 }

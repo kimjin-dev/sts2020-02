@@ -19,7 +19,7 @@ public class RootConfig {
 	/*
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="org.mariadb.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3307/xe"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/xe"></property>
 		<property name="username" value="scott"></property>
 		<property name="password" value="tiger"></property>
 	</bean>
@@ -30,7 +30,7 @@ public class RootConfig {
 		dataSource=new SimpleDriverDataSource();
 		
 		dataSource.setDriverClass(Driver.class);
-		dataSource.setUrl("jdbc:mysql://localhost:3307/xe");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/xe");
 		dataSource.setUsername("scott");
 		dataSource.setPassword("tiger");
 		return dataSource;

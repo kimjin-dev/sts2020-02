@@ -9,4 +9,7 @@ public interface DeptService {
 
 	List<DeptVo> list() throws SQLException;
 
+	DeptVo detail(int key) throws SQLException;
+	
+	void insert(DeptVo bean) throws SQLException;
 }
