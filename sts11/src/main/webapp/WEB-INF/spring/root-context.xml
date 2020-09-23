@@ -11,6 +11,9 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<websocket:handlers>
 		<websocket:mapping handler="webSocketHandler" path="/sendMsg"/>
+		<websocket:handshake-interceptors>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor" />
+		</websocket:handshake-interceptors>
 		<websocket:sockjs></websocket:sockjs>
 	</websocket:handlers>
 	

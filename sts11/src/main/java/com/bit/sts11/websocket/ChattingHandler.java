@@ -12,27 +12,39 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 public class ChattingHandler extends TextWebSocketHandler {
-	static Map<String, WebSocketSession> map= new HashMap<>();
+	static Map<String, WebSocketSession> map = new HashMap<>();
 	
+
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		session.sendMessage(new TextMessage(session.getId()+"님 입장하셨습니다"));
-		map.put(session.getId(), session);
+		session.sendMessage(new TextMessage(session.getAttributes().get("id")+"님이 입장하셨습니다"));
+		map.put(session.getAttributes().get("id").toString(), session);
+		System.out.println(session.getAttributes().get("id"));
 	}
 	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		System.out.println(message.getPayloadLength());
+		System.out.println(message.getPayload());
 		Set<Entry<String, WebSocketSession>> entrys = map.entrySet();
-		Iterator<Entry<String, WebSocketSession>> ite= entrys.iterator();
-		while(ite.hasNext()) {
-			Entry<String, WebSocketSession> entry=ite.next();
-			entry.getValue().sendMessage(new TextMessage(session.getId()+">>"+message.getPayload()));
+		Iterator<Entry<String, WebSocketSession>> ite = entrys.iterator();
+		if(message.getPayload().startsWith("@")) {
+			String msg=message.getPayload().substring(9);
+			while(ite.hasNext()) {
+				Entry<String, WebSocketSession> entry = ite.next();
+				if(entry.getKey().equals(message.getPayload().substring(1,9))) {
+					entry.getValue().sendMessage(new TextMessage(session.getAttributes().get("id")+">>"+msg));
+				}			
+			}
+		}else {
+			while(ite.hasNext()) {
+				Entry<String, WebSocketSession> entry = ite.next();
+				entry.getValue().sendMessage(new TextMessage(session.getAttributes().get("id")+">>"+message.getPayload()));			
+			}
 		}
 	}
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		map.remove(session.getId());
+		map.remove(session.getAttributes().get("id").toString());
 	}
 }
