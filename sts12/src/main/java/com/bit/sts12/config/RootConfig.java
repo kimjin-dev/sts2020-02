@@ -10,16 +10,21 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @MapperScan("com.bit.sts12.dept.model")
+@EnableAspectJAutoProxy
+@EnableTransactionManagement
 public class RootConfig {
 
 	/*
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
 		<property name="driverClass" value="org.mariadb.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/xe"></property>
+		<property name="url" value="jdbc:mysql://localhost:3307/xe"></property>
 		<property name="username" value="scott"></property>
 		<property name="password" value="tiger"></property>
 	</bean>
@@ -30,7 +35,7 @@ public class RootConfig {
 		dataSource=new SimpleDriverDataSource();
 		
 		dataSource.setDriverClass(Driver.class);
-		dataSource.setUrl("jdbc:mysql://localhost:3306/xe");
+		dataSource.setUrl("jdbc:mysql://localhost:3307/xe");
 		dataSource.setUsername("scott");
 		dataSource.setPassword("tiger");
 		return dataSource;
@@ -46,6 +51,11 @@ public class RootConfig {
 	@Bean
 	public SqlSession sqlSession() throws Exception {
 		return new SqlSessionTemplate(sqlSessionFactory());
+	}
+	
+	@Bean
+	public DataSourceTransactionManager txManager() {
+		return new DataSourceTransactionManager(dataSource());
 	}
 }
 

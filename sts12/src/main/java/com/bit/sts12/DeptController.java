@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,6 +45,12 @@ public class DeptController {
 	@GetMapping("/dept/{deptno}")
 	public DeptVo one(@PathVariable("deptno")int key) throws SQLException {
 		return deptService.detail(key);
+	}
+	
+	@PutMapping("/dept/{deptno}")
+	public DeptVo edit(@PathVariable("deptno")int key,@ModelAttribute DeptVo bean) throws SQLException {
+		System.out.println(bean);
+		return deptService.update(bean);
 	}
 	
 	

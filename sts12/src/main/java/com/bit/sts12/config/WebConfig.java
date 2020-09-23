@@ -1,5 +1,9 @@
 package com.bit.sts12.config;
 
+import javax.servlet.Filter;
+
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 // web.xml
 public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -39,5 +43,9 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		return new String[] {"/"};
 	}
 
+	@Override
+	protected Filter[] getServletFilters() {
+		return new Filter[] {new CharacterEncodingFilter("utf-8"),new HiddenHttpMethodFilter()};
+	}
 }
 
